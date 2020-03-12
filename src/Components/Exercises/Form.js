@@ -9,7 +9,7 @@ import { Button } from '@material-ui/core/';
 
 const styles = theme => ({
 	FormControl: {
-		width: 300
+		width: 250
 	}
 })
 
@@ -26,21 +26,14 @@ export default withStyles(styles)(class extends Component {
 		}
 	}
 
-	static getDerivedStateFromProps({ exercise }) {
-		return exercise || null
-	}
-	/*componentWillReceiveProps({ exercise }) {
-		this.setState({
-			...exercise
-		})
-	}*/
-
 	handleChange = name => ({ target: { value } }) =>
 		this.setState({
 			[name]: value
 		})
 
 	handleSubmit = () => {
+		// TODO: validate
+
 		this.props.onSubmit({
 			id: this.state.title.toLocaleLowerCase().replace(/ /g, '-'),
 			...this.state
@@ -51,7 +44,7 @@ export default withStyles(styles)(class extends Component {
 
 	render() {
 		const { title, description, muscles } = this.state, 
-			  { classes, exercise, muscles: categories } = this.props;
+			  { classes, exercise, muscles: categories } = this.props
 
 		return <form>
 			<TextField
@@ -76,8 +69,6 @@ export default withStyles(styles)(class extends Component {
 							{category}
 						</MenuItem>
 					)}
-					<MenuItem value={20}>Twenty</MenuItem>
-					<MenuItem value={30}>Thirty</MenuItem>
 				</Select>
 			</FormControl>
 			<br/>
